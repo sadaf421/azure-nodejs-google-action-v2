@@ -40,7 +40,13 @@ app.intent('PreBookImplement', conv => {
         conv.ask(`There is an available appointment on July 10th at 9am. Would you like to book this appointment or hear more times`);
     }
   });
-
+  app.intent('BookingConfirmationIntent', conv => {
+    conv.ask(`Your appointment has been scheduled with Dr Smith. Would you like me to text this information?`);
+  });
+  app.intent('BookingConfirmedIntent', conv => {
+    conv.ask(`message has been sent`);
+  });
+  
 const expressApp = express().use(bodyParser.json())
 expressApp.post('/fulfillment', app)
 var port=process.env.PORT||3000;
