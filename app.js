@@ -20,10 +20,10 @@ app.intent('PreBookImplement', conv => {
     }
     else if (zip==="" && provider===""){
         conv.ask(`Wat kind of provider you would like to book an appointment for, you can say things like PCP or dentist.`);
-    }
+    }/*
     else if(zip===""&&provider!==""){
         conv.ask('what zip code would you like to search the provider in');
-    }
+    }*/
     
   });
 
