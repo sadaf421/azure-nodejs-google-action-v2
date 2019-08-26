@@ -1,16 +1,7 @@
-const appInsights = require("applicationinsights");
 const {  dialogflow  } = require('actions-on-google');
 const express = require('express');
 const bodyParser = require('body-parser');
-appInsights.setup("257b2e2f-f1d2-4fe9-a601-89300e300ceb")
-.setAutoDependencyCorrelation(true)
-    .setAutoCollectRequests(true)
-    .setAutoCollectPerformance(true)
-    .setAutoCollectExceptions(true)
-    .setAutoCollectDependencies(true)
-    .setAutoCollectConsole(true)
-    .setUseDiskRetryCaching(true)
-    .start();
+
 const app = dialogflow({debug:true});
 
 app.intent('Default Welcome Intent', conv => {
@@ -60,8 +51,5 @@ const expressApp = express().use(bodyParser.json())
 expressApp.post('/fulfillment', app)
 var port=process.env.PORT||3000;
 let start = Date.now();
-server.on("listening", () => {
-	let duration = Date.now() - start;
-	appInsights.defaultClient.trackMetric({name: "server startup time", value: duration});
-});
 expressApp.listen(port);
+
